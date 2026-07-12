@@ -1,5 +1,12 @@
 # Designing AI Serving Systems (at Cloud Scale)
 
+
+[![Build PDF](https://github.com/euiseong/TBB/actions/workflows/build-pdf.yml/badge.svg)](https://github.com/euiseong/TBB/actions/workflows/build-pdf.yml)
+[![Latest PDF](https://img.shields.io/badge/download-latest%20PDF-2563EB)](https://github.com/euiseong/TBB/releases/latest/download/main.pdf)
+ 
+**Download the book:** [latest PDF](https://github.com/euiseong/TBB/releases/latest/download/main.pdf) — rebuilt automatically from `main` on every push.
+ 
+
 An open textbook on the principles beneath AI services — virtualization,
 containers, Kubernetes, serving engines, and the bill — told as one continuous
 story: from a demo that collapses at 21:04 to a service that runs, on purpose,
