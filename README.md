@@ -22,6 +22,7 @@ chapter.
 Three parts, thirteen chapters, a preface, and an epilogue.
 
 **Part 1 — Infrastructure and Principles**
+
 1. Course Overview: The Big Picture of AI Services
 2. Virtualization Principles and Cloud Compute
 3. Inside Containers
@@ -30,6 +31,7 @@ Three parts, thirteen chapters, a preface, and an epilogue.
 6. Storage and Networking
 
 **Part 2 — AI Serving Systems**
+
 7. Introduction to Serving Systems
 9. Model Serving Frameworks
 10. Inference Optimization
@@ -37,6 +39,7 @@ Three parts, thirteen chapters, a preface, and an epilogue.
 12. Scaling and Cost Optimization
 
 **Part 3 — Operations**
+
 13. MLOps and Deployment Automation
 14. Monitoring and Reliability
 
