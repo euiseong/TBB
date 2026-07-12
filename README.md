@@ -5,9 +5,6 @@ containers, Kubernetes, serving engines, and the bill — told as one continuous
 story: from a demo that collapses at 21:04 to a service that runs, on purpose,
 at exactly $900 a month.
 
-> **Author:** Euiseong Seo · Professor, Sungkyunkwan University
-> **Edition:** English · 2026 · a principles-first textbook
-
 This repository holds the LaTeX source for the book, organized one directory per
 chapter.
 
