@@ -1,0 +1,60 @@
+name: Build PDF
+
+# Build the book on every push to main and publish the resulting main.pdf as the
+# asset of a rolling "latest" GitHub Release. The PDF is then always available at
+#   https://github.com/euiseong/TBB/releases/latest/download/main.pdf
+# (or the fixed-tag URL .../releases/download/latest/main.pdf), without ever
+# committing the binary into the repository's history.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:         # allow manual runs from the Actions tab
+
+# creating/updating a Release needs write access to repository contents
+permissions:
+  contents: write
+
+concurrency:
+  group: build-pdf
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install TeX Live and fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-xetex texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended texlive-plain-generic latexmk \
+            fonts-crosextra-carlito fonts-dejavu fonts-noto-cjk fontconfig
+          sudo fc-cache -f
+
+      - name: Build the book (make -> main.pdf)
+        run: make
+
+      - name: Upload main.pdf as a build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-pdf
+          path: main.pdf
+          if-no-files-found: error
+
+      - name: Publish main.pdf to the "latest" release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          NOTES="Automatically built from main (${GITHUB_SHA::7})."
+          if gh release view latest >/dev/null 2>&1; then
+            gh release upload latest main.pdf --clobber
+            gh release edit latest --notes "$NOTES"
+          else
+            gh release create latest main.pdf \
+              --title "Latest PDF build" \
+              --notes "$NOTES" \
+              --latest
+          fi
