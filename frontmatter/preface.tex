@@ -1,0 +1,68 @@
+%% Preface — The Layer Above
+\frontchapter{The Layer Above}{Preface}
+\chaptersubtitle{Why an operating-systems professor wrote a book about what sits on top of one}
+
+For seventeen years I have taught undergraduate operating systems, and for seventeen years I have opened the course with the same confession: \textbf{almost none of you will ever build one.} The world runs on a handful of kernels, most of them older than the students in the room; the market for new ones is, rounding generously, zero. Every year a brave hand goes up: \textit{then why are we here?} Because the course was never about the artifact. It was about the ideas the artifact is made of — scheduling, caching, virtual memory, isolation, the art of making promises to a thousand processes at once and keeping enough of them — and about watching, each semester, the exact moment a student discovers that a context switch is not magic, just bookkeeping done unreasonably fast. The students got their intellectual sparks; I got to watch them go off. A thoroughly satisfying bargain.
+
+Then the ground moved. It is no longer bold to predict that my students will hand-write less and less of their code — that typing data structures into an editor is becoming something you \textit{direct} rather than \textit{do}. Some colleagues insist the craft of programming will matter as much as it ever did. I am less romantic: it will matter the way arithmetic matters after the calculator — a real skill, occasionally decisive, no longer the thing that separates one career from another. I say this without joy — I liked the craft — but a preface owes you the author's actual opinion.
+
+\subsection*{1968, Again}
+
+When the ground moves, I find it steadying to check where it has moved before. In the autumn of 1968, NATO — of all institutions — gathered some fifty people in Garmisch, Bavaria, under a banner chosen as a deliberate provocation: \textit{software engineering}, a phrase that struck many ears as a contradiction in terms. The occasion was what everyone had privately been calling the \textbf{software crisis} — projects everywhere late, over budget, and wrong. That week is as good a birthdate as any for software as a discipline of its own.
+
+Nine months later the point was demonstrated at altitude. As Apollo 11 descended toward the Moon, its guidance computer began flashing alarms — 1202, 1201 — because a misconfigured radar was flooding it with bogus work. The software, built by Margaret Hamilton's team at MIT, shed the low-priority tasks and kept the landing computations running. The alarm codes got the headlines; what saved the landing was a \textbf{scheduling policy}. A month earlier IBM had announced it would "unbundle" — sell software separately from its machines — and software became a product, an industry, money. Invisible system software deciding visible outcomes: that is the 1960s in one sentence.
+
+I believe we are living through its second printing, one level up. Today's AI services stand on a stratum of system software \textit{above} the operating system, every bit as invisible: hypervisors renting out silicon by the slice, container runtimes and Kubernetes turning fleets of machines into one computer, serving engines squeezing a thousand conversations into GPU memory, and above those, the fast-multiplying harnesses and pipelines of agentic AI. Nobody demos this layer on stage; everything demoed on stage depends on it.
+
+For an operating-systems professor, the best part is the déjà vu. When researchers finally tamed the memory waste of the LLM \textbf{KV cache}, the winning idea — PagedAttention — was a page table, the same trick the Atlas machine introduced in 1962. A section of Chapter 11 is titled "The OS Moves Inside" — not a metaphor. Scheduling came back as continuous batching; isolation came back as namespaces and cgroups; queueing theory came back wearing p99 latency as a name tag. Nothing I taught for seventeen years was wasted. It all returned, renamed, and running on a GPU.
+
+\subsection*{A Course I Taught Twice, Then Retired}
+
+This book has a failed ancestor, and you deserve the family history. Some years ago — before a chatbot made "token" a household word — I taught a graduate course called \textit{Cloud and AI}. Twice. It was the right course at the wrong speed. Kubernetes had not yet won its war; respectable people still bet on Mesos and Swarm. The AI framework you taught in September was legacy by December. The syllabus I wrote in week one needed corrections by week fifteen. The textbook I wanted — organized around principles that would outlive the release notes — did not exist, so I lectured from a stack of borrowed slides held together mostly by hope.
+
+I do not think the students enjoyed that course. I am certain I did not. After the second run I retired it, with the particular guilt of a teacher who knows the subject deserved better than the semester it got. This book is, among other things, the settling of that account.
+
+\subsection*{Why Now}
+
+What changed is that the frame has set. The Transformer is nine years old, and every root-and-branch attempt to replace it has so far failed to dethrone it; the insurgents survive as hybrids at its side, and its most expensive side effect — the KV cache — remains the field's great standing homework, now teachable as such. The serving stack has converged on a recognizable shape — continuous batching, paged memory for conversations, two clocks for latency. Kubernetes won its war so thoroughly that the trade press now calls it \textit{boring}, which in infrastructure is the highest available compliment, and cloud-native architecture is simply how organizations build. New modules will keep arriving above this frame — harnesses, runtimes, pipelines — but they will arrive \textit{into} the frame. When the details change weekly, you write blog posts; when the principles look good for a decade, you may — carefully — write a textbook.
+
+\subsection*{How This Book Was Made — a Disclosure}
+
+Knowing a textbook should exist and writing one are different sports. Donald Knuth signed a contract in 1962 for one modest book about compilers; the first volume appeared six years later, and the project remains, sixty-odd years on, magnificently unfinished. Fred Brooks asked how a project gets to be a year late and answered himself — \textit{one day at a time}; textbooks work the same way. Nor could I reach for the traditional academic remedy — one chapter per graduate student, stapled into a book with the professor's name on it. That era is gone, rightly: graduate students owe the world their research, not my chapters.
+
+What rescued this book is its own subject. I went in skeptical of AI agents as co-authors; I report the result plainly: I could not have written this book better by hand, and it would not have been finished this decade. My contribution was the frame — the lectures, the syllabus, the judgment about what is fundamental and what is fashion. The agents contributed drafts, figures, arithmetic, and inexhaustible patience. I handed them a pencil sketch of a person — one circle, five lines — and was handed back cinema. Farm machinery once multiplied the acreage one pair of hands could work; the same multiplication has now arrived for intellectual labor. (Prefaces traditionally close with a pious formula — the helpers get the thanks, and the errors that survive are the author's alone. I am updating it for this era: whatever is good in this book is mine, and whatever errors remain are entirely the AI's. Why? Because people — still — matter.)
+
+There is a disclosure inside the disclosure. Every draft sentence reached me as tokens from a model running on rented GPUs — requests batched continuously, conversations paged through a KV cache, the whole apparatus of Chapters 9 through 12 humming underneath. This book was manufactured by the very systems it teaches. I can imagine no stronger endorsement of the syllabus.
+
+\subsection*{What Is in the Book, and How to Read It}
+
+The book follows a fifteen-week course, in three parts. \textbf{Part 1 — Infrastructure and Principles (Chapters 1–6)} descends the stack on purpose: what a cloud instance really is, what a container really is (namespaces plus cgroups plus a layered filesystem — three kernel features in a trench coat), how Kubernetes turns declared intentions into running fleets, and where weights and data live. \textbf{Part 2 — AI Serving Systems (Chapters 7 and 9–12)} builds the discipline of serving: latency tails and SLOs, serving frameworks, quantization and compilation, the special physics of LLM inference, and scaling with the bill stapled to it. \textbf{Part 3 — Operations (Chapters 13–14)} teaches change without drama — registries, pipelines, canaries — and the service's nervous system: monitoring, alerting, drift. There is no Chapter 8 (the midterm — the chapter you write); an epilogue walks it all out the door.
+
+It is told as one continuous story. A student team's demo collapses at 21:04 under exactly one hundred users; the month-end bill for the "fix" arrives at \$779.66 for a GPU that mostly idled; fifteen weeks of engineering later, the same service runs inside its promises for \$900 a month — \textbf{exactly} \$900, because by then the number is chosen, not suffered. Along the way each chapter plants \textit{souvenirs} — one-liners sharp enough to make decisions with at 2 a.m.: \code{exit 137} is the kernel's goodbye note; \textit{the mean describes nobody}. Worked examples do their arithmetic honestly in front of you, \textit{Think About It} boxes interrupt where a good seminar would, and every exercise ships with answers and commentary — because this book expects to be read by people studying \textbf{alone}.
+
+That is deliberate. This is the AI era: explanation has become cheap — your AI tutor will happily explain anything at 3 a.m. — but \textbf{curation has not}. What to learn, in what order, connected by which principles — that is a course, and this book tries to be one on paper. Hand students the frame and the questions, and they and their AI will manage the rest. (Colleagues: not a resignation letter. Someone still has to choose the frame.) Formally: Python is required; an operating-systems course is strongly recommended (the book rebuilds what it needs); a first course in machine learning helps but is not assumed.
+
+\vspace{1.0pt}
+
+\begin{calloutbox}{tbbamber}{tbbamberfill}
+{\normalsize\bfseries\color{tbbamberdark}How to use this book}\par\vspace{3pt}
+\begin{tbbitemize}
+  \item \textbf{As a course} — the chapters map one-to-one onto a fifteen-week semester: midterm in week 8, demo day in week 15; a companion syllabus carries the project rubric and lab schedule.
+  \item \textbf{For self-study} — read a chapter, run its lab, then argue the exercises with your AI tutor — full answers and commentary let you referee the argument.
+  \item \textbf{Hardware} — every lab fits a single small GPU (a free Colab T4 suffices), with a CPU-only fallback — nothing requires a cluster you do not have.
+\end{tbbitemize}
+\end{calloutbox}
+
+\vspace{1.5pt}
+
+\subsection*{"System Software Is the Money"}
+
+Not long ago the chief executive of a major technology company — the initial is S; Korean readers may enjoy the guessing game — summed all of this up in four Korean words: \textbf{"시스템SW가 돈이다"} — \textit{system software is the money}. He is in excellent company: IBM reached the same conclusion in 1969, and as I write, the most valuable company on Earth is, on its business card, a chip maker — yet ask anyone who has tried to leave its platform, and you will learn that the moat is CUDA: system software, invisible as ever, quietly collecting the check.
+
+My hopes for you are two. First, that you finish this book able to \textit{see} the invisible layer — to watch a chatbot answer in half a second and perceive the hypervisor, the cgroup, the scheduler, the paged cache, the bill. Second, that when your generation's 21:04 arrives — and it will — you are the one in the room who already knows which segment is the bottleneck. The 1960s minted careers out of that kind of sight; the 2020s are doing it again, one layer up.
+
+My thanks to the two cohorts of that retired course, who beta-tested these questions before there were answers — and to the tireless agents, who typed while I drew stick figures.
+
+\textcolor{tbbink}{\textbf{May your services be boring.}}
+
+{\raggedleft \textcolor{tbbink}{\textbf{Euiseong}}\textcolor{tbbgray}{\textit{  ·  Pangyo (the heart of the Korean AI revolution), July 2026}}\par}

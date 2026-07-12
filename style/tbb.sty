@@ -1,0 +1,230 @@
+% ======================================================================
+%  tbb.sty — shared style for
+%  "Designing AI Serving Systems (at Cloud Scale)"
+%
+%  The book's house style: the five-colour palette, the dark terminal blocks,
+%  the accent callout boxes, the chapter-opener composition (book-title divider
+%  → CHAPTER N kicker → big title → grey subtitle), the section rule, and the
+%  Calibri (Carlito) / monospace type.  Compile with XeLaTeX.
+% ======================================================================
+\ProvidesPackage{tbb}[2026/07/12 Designing AI Serving Systems house style]
+
+% ---------------------------------------------------------------- packages
+\RequirePackage{iftex}
+\RequirePackage{geometry}
+\RequirePackage[table,svgnames]{xcolor}
+\RequirePackage{fontspec}
+\RequirePackage{microtype}
+\RequirePackage{setspace}
+\RequirePackage{array}
+\RequirePackage{booktabs}
+\RequirePackage{colortbl}
+\RequirePackage{graphicx}
+\RequirePackage{adjustbox}
+\RequirePackage{enumitem}
+\RequirePackage{fvextra}
+\RequirePackage{upquote}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage{needspace}
+\RequirePackage{etoolbox}
+\RequirePackage{ragged2e}
+\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{bookmark}
+
+\tcbuselibrary{skins,breakable}
+
+% ---------------------------------------------------------------- palette
+% the book's five-colour palette
+\definecolor{tbbink}{HTML}{0F172A}
+\definecolor{tbbbody}{HTML}{1E293B}
+\definecolor{tbbgray}{HTML}{475569}
+\definecolor{tbblightgray}{HTML}{94A3B8}
+\definecolor{tbbnavy}{HTML}{1E3A8A}
+\definecolor{tbbblue}{HTML}{2563EB}
+\definecolor{tbbteal}{HTML}{0D9488}
+\definecolor{tbbamber}{HTML}{D97706}
+\definecolor{tbbamberdark}{HTML}{92400E}
+\definecolor{tbbpurple}{HTML}{7C3AED}
+\definecolor{tbbred}{HTML}{DC2626}
+\definecolor{tbbboxfill}{HTML}{F8FAFC}
+\definecolor{tbbboxborder}{HTML}{E2E8F0}
+\definecolor{tbbamberfill}{HTML}{FFF7ED}
+\definecolor{tbbbluefill}{HTML}{EFF6FF}
+\definecolor{tbbpurplefill}{HTML}{F5F3FF}
+\definecolor{tbbtealfill}{HTML}{F0FDFA}
+\definecolor{tbbtablehead}{HTML}{EFF6FF}
+\definecolor{tbbtableborder}{HTML}{CBD5E1}
+\definecolor{tbbsecrule}{HTML}{BFDBFE}
+% terminal / code
+\definecolor{tbbterminalbg}{HTML}{0F172A}
+\definecolor{tbbtermframe}{HTML}{334155}
+\definecolor{tbbtermfg}{HTML}{B8C4D4}
+\definecolor{tbbtermprompt}{HTML}{7DD3FC}
+\definecolor{tbbtermcomment}{HTML}{7C8DA6}
+\definecolor{tbbcodebg}{HTML}{F1F5F9}
+% dynamic (raw-hex) colours emitted by the build, if any
+\InputIfFileExists{style/tbb-dyncolors.tex}{}{}
+
+% ---------------------------------------------------------------- fonts
+% Body = Carlito (a metric clone of Calibri).
+% Code = DejaVu Sans Mono (covers the arrows / box-drawing used in the terminal
+% transcripts).  Glyphs Carlito lacks (symbols, circled digits, arrows, Korean)
+% are routed to DejaVu Sans / Noto CJK per-character by style/tbb-fallback.tex.
+\setmainfont{Carlito}
+\setsansfont{Carlito}
+\setmonofont{DejaVu Sans Mono}[Scale=0.86]
+\newfontfamily\symfont{DejaVu Sans}
+\newfontfamily\cjkfont{Noto Serif CJK KR}
+\renewcommand{\familydefault}{\sfdefault}
+\RequirePackage{newunicodechar}
+\InputIfFileExists{style/tbb-fallback.tex}{}{}
+\InputIfFileExists{style/tbb-codeactive.tex}{}{}
+\providecommand{\tbbcodeactive}{}% no-op if the generated file above was absent
+
+% ---------------------------------------------------------------- page
+\geometry{a4paper, top=2.5cm, bottom=2.6cm, left=2.3cm, right=2.3cm,
+          headsep=10pt, footskip=22pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 1pt}
+% body text set ~0.5pt larger than the 11pt-class default (10.95 -> 11.5pt);
+% headings are unchanged (they use explicit \fontsize).
+\makeatletter
+\renewcommand\normalsize{%
+  \@setfontsize\normalsize{11.5pt}{13.8pt}%
+  \abovedisplayskip 11\p@ \@plus3\p@ \@minus6\p@
+  \belowdisplayskip \abovedisplayskip
+  \abovedisplayshortskip \z@ \@plus3\p@
+  \belowdisplayshortskip 6.5\p@ \@plus3.5\p@ \@minus3\p@}
+\makeatother
+\linespread{1.18}
+\normalsize
+\color{tbbbody}
+\justifying   % justified body text
+\sloppy
+\setlength{\emergencystretch}{3em}
+
+% ---------------------------------------------------------------- headers/footers
+\newcommand{\tbbbooktitle}{Designing AI Serving Systems (at Cloud Scale)}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{\color{tbbtableborder}\hrule height 0.4pt width\headwidth}
+\fancyhead[L]{\footnotesize\color{tbbgray}\tbbbooktitle}
+\fancyhead[R]{\footnotesize\color{tbbgray}\leftmark}
+\fancyfoot[C]{\footnotesize\color{tbbgray}--- \thepage\ ---}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\headrule}{}%
+  \fancyfoot[C]{\footnotesize\color{tbbgray}--- \thepage\ ---}%
+}
+
+% ---------------------------------------------------------------- chapter opener
+% Chapter opener: a small grey book-title line over a hairline,
+% then the blue "CHAPTER N" kicker, then the big ink title.
+\newcommand{\tbbchapdivider}{%
+  {\footnotesize\color{tbbgray}\tbbbooktitle}\par\vspace{2pt}%
+  {\color{tbbtableborder}\rule{\linewidth}{0.4pt}}\par\vspace{15pt}}
+\newcommand{\tbbchapkick}[1]{\tbbchapdivider{\bfseries\large\color{tbbblue}#1}}
+\newcommand{\tbbchaptitlefont}{\bfseries\fontsize{25}{29}\selectfont\color{tbbink}}
+
+\titleformat{\chapter}[display]
+  {\normalfont}
+  {\tbbchapkick{CHAPTER \thechapter}}
+  {6pt}
+  {\tbbchaptitlefont}
+\titlespacing*{\chapter}{0pt}{4pt}{10pt}
+
+% grey chapter subtitle (the line under the big title)
+\newcommand{\chaptersubtitle}[1]{%
+  \vspace{-4pt}{\fontsize{15}{19}\selectfont\color{tbbgray}#1\par}\vspace{14pt}\nobreak}
+
+% unnumbered front/back "chapters" (preface, epilogue) with the same opener look
+\newcommand{\frontchapter}[2]{%
+  \clearpage\thispagestyle{plain}\phantomsection
+  \markboth{#2}{#2}\addcontentsline{toc}{chapter}{#1}%
+  \tbbchapdivider{\bfseries\large\color{tbbblue}\MakeUppercase{#2}}\par\vspace{6pt}%
+  {\tbbchaptitlefont #1\par}%
+}
+
+% ---------------------------------------------------------------- part divider
+\titleformat{\part}[display]
+  {\centering\normalfont}
+  {\bfseries\Large\color{tbbblue}PART \thepart}
+  {12pt}
+  {\bfseries\fontsize{30}{34}\selectfont\color{tbbink}}
+\titlespacing*{\part}{0pt}{80pt}{18pt}
+
+% ---------------------------------------------------------------- section headings
+% section heading: blue number + ink title, over a light-blue hairline.
+\titleformat{\section}
+  {\bfseries\fontsize{15}{18}\selectfont\color{tbbink}}
+  {\color{tbbblue}\thesection}{0.55em}{}
+  [\vspace{-5pt}{\color{tbbsecrule}\rule{\linewidth}{0.6pt}}]
+\titlespacing*{\section}{0pt}{16pt plus 3pt}{7pt}
+
+% subsection heading: bold navy (unnumbered in the text)
+\titleformat{\subsection}
+  {\bfseries\fontsize{13}{16}\selectfont\color{tbbnavy}}{\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{12pt plus 2pt}{4pt}
+
+% "named" end-of-chapter sections (Summary, Exercises, Answers, Further Reading)
+\newcommand{\namedsection}[2]{%
+  \par\addvspace{16pt}\needspace{4\baselineskip}%
+  {\bfseries\fontsize{15}{18}\selectfont\color{tbbink}#1\par}%
+  \addcontentsline{toc}{section}{#1}\markright{#1}%
+  \nopagebreak\vspace{-4pt}\noindent{\color{tbbsecrule}\rule{\linewidth}{0.6pt}}\par\vspace{5pt}%
+  \notblank{#2}{{\fontsize{12.5}{15}\selectfont\color{tbbgray}\itshape #2\par}\vspace{4pt}}{}%
+}
+
+% ---------------------------------------------------------------- inline code
+\newcommand{\code}[1]{{\ttfamily #1}}
+
+% ---------------------------------------------------------------- lists
+\newlist{tbbitemize}{itemize}{2}
+\setlist[tbbitemize,1]{leftmargin=1.5em, itemsep=2pt, topsep=3pt, parsep=0pt,
+  label=\textcolor{tbbblue}{\textbullet}}
+\setlist[tbbitemize,2]{leftmargin=1.4em, itemsep=1pt, topsep=1pt,
+  label=\textcolor{tbblightgray}{\textendash}}
+\newlist{tbboptions}{itemize}{1}
+\setlist[tbboptions]{leftmargin=1.7em, itemsep=1pt, topsep=2pt, parsep=0pt, label={}}
+
+% numbered question / summary item — a manual hanging number so the list
+% survives the option lines interleaved between questions.
+\newcommand{\qitem}[2]{%
+  \par\vspace{4pt}\noindent
+  \hangindent=1.9em\hangafter=0
+  \makebox[1.9em][l]{\bfseries\color{tbbnavy}#1.}#2\par}
+
+% ---------------------------------------------------------------- figures
+\newenvironment{tbbfigure}{\par\medskip\begin{center}}{\end{center}\par\medskip}
+\newcommand{\figcaption}[1]{{\centering\small\color{tbbgray}#1\par}}
+
+% ---------------------------------------------------------------- callout box
+% left accent bar + light fill + thin border.
+\newtcolorbox{calloutbox}[2]{%
+  enhanced, breakable, colback=#2, colframe=tbbboxborder, boxrule=0.4pt,
+  arc=1.5pt, borderline west={2.8pt}{0pt}{#1},
+  left=11pt, right=11pt, top=9pt, bottom=9pt,
+  before skip=10pt, after skip=10pt,
+  fontupper=\small\color{tbbbody}}
+
+% ---------------------------------------------------------------- terminal / code block
+\newtcolorbox{terminalbox}{%
+  enhanced, breakable, colback=tbbterminalbg, colframe=tbbtermframe,
+  boxrule=0.4pt, arc=2pt,
+  left=9pt, right=9pt, top=7pt, bottom=7pt,
+  before skip=9pt, after skip=9pt}
+
+% ---------------------------------------------------------------- data table
+\newlength{\tbltextwidth}
+\newenvironment{tbbtablewrap}
+  {\par\medskip\setlength{\tbltextwidth}{\linewidth}%
+   \setlength{\arrayrulewidth}{0.4pt}\renewcommand{\arraystretch}{1.28}%
+   \small\centering}
+  {\par\medskip}
+
+\endinput

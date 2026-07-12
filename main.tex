@@ -1,0 +1,66 @@
+% ======================================================================
+%  Designing AI Serving Systems (at Cloud Scale)
+%  Euiseong Seo — Sungkyunkwan University
+%
+%  Master file.  Compile with XeLaTeX (twice, for the table of contents):
+%     xelatex main   &&   xelatex main
+%  or simply:  make        (see Makefile)
+%
+%  Structure: front matter (title, preface, contents), three parts of
+%  chapters, and an epilogue.  Chapter 8 is the course midterm and has no
+%  chapter of its own, so the numbering skips from 7 to 9 — each chapter
+%  file sets its own number, so the gap is intentional and self-contained.
+% ======================================================================
+\documentclass[11pt,oneside]{book}
+\usepackage{style/tbb}
+
+\hypersetup{
+  pdftitle={Designing AI Serving Systems (at Cloud Scale)},
+  pdfauthor={Euiseong Seo},
+  pdfsubject={AI serving systems, cloud infrastructure, inference},
+  bookmarksnumbered=true,
+}
+
+% figures live in each chapter's own figures/ dir; filenames are unique per
+% chapter, so search-path resolution of `figures/<name>.png` is unambiguous.
+\graphicspath{%
+  {chapters/ch01/}{chapters/ch02/}{chapters/ch03/}{chapters/ch04/}%
+  {chapters/ch05/}{chapters/ch06/}{chapters/ch07/}{chapters/ch09/}%
+  {chapters/ch10/}{chapters/ch11/}{chapters/ch12/}{chapters/ch13/}%
+  {chapters/ch14/}{backmatter/epilogue/}}
+
+\begin{document}
+\frontmatter
+
+\input{frontmatter/titlepage}
+
+\include{frontmatter/preface}
+
+\cleardoublepage
+\pdfbookmark[0]{Contents}{toc}
+{\hypersetup{linkcolor=tbbink}\tableofcontents}
+
+\mainmatter
+
+\part{Infrastructure and Principles}
+\include{chapters/ch01/ch01}
+\include{chapters/ch02/ch02}
+\include{chapters/ch03/ch03}
+\include{chapters/ch04/ch04}
+\include{chapters/ch05/ch05}
+\include{chapters/ch06/ch06}
+
+\part{AI Serving Systems}
+\include{chapters/ch07/ch07}
+\include{chapters/ch09/ch09}
+\include{chapters/ch10/ch10}
+\include{chapters/ch11/ch11}
+\include{chapters/ch12/ch12}
+
+\part{Operations}
+\include{chapters/ch13/ch13}
+\include{chapters/ch14/ch14}
+
+\include{backmatter/epilogue/epilogue}
+
+\end{document}

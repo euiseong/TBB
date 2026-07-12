@@ -1,0 +1,46 @@
+%% Title page — palette bar, story descriptor,
+%% three-part foot line.
+\thispagestyle{empty}
+\begingroup
+\setlength{\parskip}{0pt}\raggedright
+
+% top strip: edition line over a hairline
+\noindent{\color{tbbgray}\large A Principles-First Textbook\hfill English Edition · 2026}\par
+\vspace{3pt}{\color{tbbtableborder}\rule{\linewidth}{0.4pt}}\par
+
+\vspace{2.6cm}
+
+% title
+{\bfseries\fontsize{40}{44}\selectfont\color{tbbink}Designing AI Serving Systems\par}
+\vspace{6pt}
+{\bfseries\fontsize{28}{32}\selectfont\color{tbbblue}(at Cloud Scale)\par}
+
+\vspace{16pt}
+% the five-colour palette bar (the figures' fixed palette, as a signature)
+\noindent\textcolor{tbbblue}{\rule{0.2\linewidth}{10pt}}%
+\textcolor{tbbteal}{\rule{0.2\linewidth}{10pt}}%
+\textcolor{tbbamber}{\rule{0.2\linewidth}{10pt}}%
+\textcolor{tbbpurple}{\rule{0.2\linewidth}{10pt}}%
+\textcolor{tbbred}{\rule{0.2\linewidth}{10pt}}\par
+
+\vspace{18pt}
+% descriptor
+{\fontsize{15}{21}\selectfont\color{tbbgray}%
+The principles beneath AI services --- virtualization, containers, Kubernetes, serving engines, and the bill --- told as one continuous story: from a demo that collapses at 21:04 to a service that runs, on purpose, at exactly \$900 a month.\par}
+
+\vfill
+
+% author
+{\bfseries\fontsize{24}{28}\selectfont\color{tbbink}Euiseong Seo\par}
+\vspace{4pt}
+{\fontsize{14}{18}\selectfont\color{tbbgray}Professor, Sungkyunkwan University\par}
+
+\vspace{1.4cm}
+% foot: the three parts over a hairline
+{\color{tbbtableborder}\rule{\linewidth}{0.4pt}}\par\vspace{6pt}
+\noindent{\fontsize{12}{16}\selectfont%
+\textcolor{tbbblue}{\textbf{Part 1}} \textcolor{tbbgray}{Infrastructure and Principles}\quad
+\textcolor{tbbteal}{\textbf{Part 2}} \textcolor{tbbgray}{AI Serving Systems}\quad
+\textcolor{tbbamber}{\textbf{Part 3}} \textcolor{tbbgray}{Operations}\par}
+\endgroup
+\clearpage

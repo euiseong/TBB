@@ -1,0 +1,38 @@
+Designing AI Serving Systems (at Cloud Scale)
+Copyright (c) 2026 Euiseong Seo
+
+SPDX-License-Identifier: CC-BY-NC-SA-4.0
+
+This work — the text and figures of the book — is licensed under the
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+License (CC BY-NC-SA 4.0).
+
+You are free to:
+  * Share — copy and redistribute the material in any medium or format.
+  * Adapt — remix, transform, and build upon the material.
+
+Under the following terms:
+  * Attribution — You must give appropriate credit to Euiseong Seo, provide
+    a link to the license, and indicate if changes were made. You may do so
+    in any reasonable manner, but not in any way that suggests the licensor
+    endorses you or your use.
+  * NonCommercial — You may not use the material for commercial purposes.
+  * ShareAlike — If you remix, transform, or build upon the material, you
+    must distribute your contributions under the same license as the
+    original.
+  * No additional restrictions — You may not apply legal terms or
+    technological measures that legally restrict others from doing anything
+    the license permits.
+
+The full legal code of this license is available at:
+  https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+A human-readable summary is at:
+  https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+The build tooling in this repository (the files under tools/ and style/) is
+provided under the same license for convenience; you may also reuse those
+build scripts and style macros under the terms above.
+
+THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. See the full legal code for the complete disclaimer of warranties
+and limitation of liability.
