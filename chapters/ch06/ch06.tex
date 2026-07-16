@@ -629,7 +629,7 @@ Enable the ingress addon (\code{minikube addons enable ingress}), install cert-m
 
 \qitem{1}{\textbf{Your model server owns nothing.} Every byte in a pod is from the image, fetched at boot from a store, or disposable scratch — never unique. This is the license for all of Chapter 5's choreography: pods can be cattle only because nothing of value dies with one.}
 
-\qitem{2}{\textbf{Storage is three contracts, not three products.} Block sells a disk (POSIX, sub-ms, one owner, pay-provisioned); object sells durable blobs behind HTTP (ranged GETs, unlimited readers, eleven nines, pay stored + requests + egress); file sells shared POSIX at \textasciitilde{}10× block price. Choose by access pattern, sharing, and price shape — with arithmetic.}
+\qitem{2}{\textbf{Storage is three contracts, not three products.} Block sells a disk (POSIX, sub-ms, one owner, pay-provisioned); object sells durable blobs behind HTTP (ranged GETs, unlimited readers, eleven nines, pay stored + requests + egress); file sells shared POSIX at \textasciitilde{}4× block price. Choose by access pattern, sharing, and price shape — with arithmetic.}
 
 \qitem{3}{\textbf{Object storage's shape is "slow first byte, unbounded aggregate."} One stream crawls (\textasciitilde{}80 MB/s); sixteen ranged streams saturate a NIC (\textasciitilde{}1 GB/s). Every fast loader in the industry is this one observation, applied.}
 

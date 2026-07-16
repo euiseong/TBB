@@ -11,7 +11,7 @@
   \item Deploy a model server as Pod + Deployment + Service; wire startup, readiness, and liveness probes correctly around a slow model load; and explain how readiness gates both traffic and rollouts.
   \item Translate resource requests and limits into what each actually is — scheduler arithmetic versus cgroup files — compute node packing by hand, and choose QoS classes for serving pods deliberately.
   \item Reason about GPU scheduling: extended resources and integer allocation, taints and affinity, bin-packing versus spreading, and the fragmentation that quietly strands the most expensive hardware in the fleet.
-  \item Diagnose the six canonical pod failure states — Pending, ImagePullBackOff, CrashLoopBackOff, OOMKilled, Evicted, and ready-but-unrouted — from their signatures, with the right first command for each.
+  \item Diagnose the six canonical pod failure states — Pending, ImagePullBackOff, CrashLoopBackOff, OOMKilled, Evicted, and Running-but-unrouted — from their signatures, with the right first command for each.
 \end{tbbitemize}
 \end{calloutbox}
 

@@ -334,7 +334,7 @@ Because "run the ledger" deserves to be shown once rather than assigned, here is
 
 \section{Lab: Build the Pipeline, Then Fail to Break Production}
 
-The syllabus names the deliverable — \textbf{GitHub Actions로 모델 자동 배포 파이프라인 구축} — and this lab takes its grading philosophy from §13.3: a pipeline is proven by what it \textit{refuses}. You will wire the three lanes onto your project repo from a handout skeleton, produce one green path end to end, and then earn the majority of the marks by attacking your own production \textbf{twice and failing twice} — once at the gate, once at the canary. Budget: \textasciitilde{}\$2 of GPU-runner time; the T4 does double duty as the self-hosted runner and the serving node. Teams on the CPU fallback path run every stage with the small model — the pipeline neither knows nor cares, which is rather the point.
+The syllabus names the deliverable — \textbf{building an automated model-deployment pipeline with GitHub Actions} — and this lab takes its grading philosophy from §13.3: a pipeline is proven by what it \textit{refuses}. You will wire the three lanes onto your project repo from a handout skeleton, produce one green path end to end, and then earn the majority of the marks by attacking your own production \textbf{twice and failing twice} — once at the gate, once at the canary. Budget: \textasciitilde{}\$2 of GPU-runner time; the T4 does double duty as the self-hosted runner and the serving node. Teams on the CPU fallback path run every stage with the small model — the pipeline neither knows nor cares, which is rather the point.
 
 \begin{tbbfigure}
   \adjustbox{max width=0.94\linewidth,max totalheight=0.46\textheight}{\includegraphics{figures/fig13-7_lab.png}}\\[3pt]
