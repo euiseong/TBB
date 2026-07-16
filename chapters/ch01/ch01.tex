@@ -507,10 +507,10 @@ Four pieces of study advice. First, \textbf{audit your prerequisites now.} Kerne
   \item ③ Develop → Serve → Train → Operate        ④ Train → Serve → Develop → Operate
 \end{tbboptions}
 
-\qitem{2}{Which statements correctly describe inference (serving) workloads?  ㉠ a finite job with a start and an end  ㉡ latency is the key performance metric  ㉢ load fluctuates with user traffic  ㉣ failures are cheap because you can restart from a checkpoint}
+\qitem{2}{Which statements correctly describe inference (serving) workloads?  Ⓐ a finite job with a start and an end  Ⓑ latency is the key performance metric  Ⓒ load fluctuates with user traffic  Ⓓ failures are cheap because you can restart from a checkpoint}
 
 \begin{tbboptions}
-  \item ① ㉠, ㉡        ② ㉡, ㉢        ③ ㉠, ㉣        ④ ㉢, ㉣
+  \item ① Ⓐ, Ⓑ        ② Ⓑ, Ⓒ        ③ Ⓐ, Ⓓ        ④ Ⓒ, Ⓓ
 \end{tbboptions}
 
 \qitem{3}{What does "p99 latency of 500 ms" mean, precisely?}
@@ -571,7 +571,7 @@ Four pieces of study advice. First, \textbf{audit your prerequisites now.} Kerne
 
 \qitem{2}{Scale-to-zero shrinks a service to zero instances when idle. What do we call the resulting problem — the first request after a quiet period being very slow because it waits for instance startup and model loading?}
 
-\qitem{3}{Fill in the blanks: the primary performance metric of training workloads is ( ㉠ ), and of online inference workloads is ( ㉡ ).}
+\qitem{3}{Fill in the blanks: the primary performance metric of training workloads is ( Ⓐ ), and of online inference workloads is ( Ⓑ ).}
 
 \qitem{4}{Approximately how much GPU memory do the weights of a 13 B-parameter model occupy in FP16? (Show the calculation.)}
 
@@ -593,7 +593,7 @@ Four pieces of study advice. First, \textbf{audit your prerequisites now.} Kerne
 
 \qitem{1}{\textbf{②} Develop (data, experiments) → Train (produce the model) → Serve (make it a service) → Operate (keep it healthy), joined into a loop by the feedback path from operations back to development and training. (Section 1.2)}
 
-\qitem{2}{\textbf{②} ㉡ and ㉢ are correct. ㉠ describes training (inference is an endless, always-on service), and so does ㉣ — a serving failure harms live users immediately, so its cost is high. (Section 1.3)}
+\qitem{2}{\textbf{②} Ⓑ and Ⓒ are correct. Ⓐ describes training (inference is an endless, always-on service), and so does Ⓓ — a serving failure harms live users immediately, so its cost is high. (Section 1.3)}
 
 \qitem{3}{\textbf{③} p99 is the latency at the 99th percentile when requests are sorted fastest-to-slowest. The average (①) hides the slow tail, which is why serving uses percentile metrics. (Section 1.3)}
 
@@ -613,7 +613,7 @@ Four pieces of study advice. First, \textbf{audit your prerequisites now.} Kerne
 
 \qitem{2}{\textbf{Cold start.} For GPU serving it stacks instance boot + container image pull + model weight loading, reaching tens of seconds to minutes. Week 12 treats remedies, together with Firecracker from Week 2.}
 
-\qitem{3}{㉠ \textbf{throughput}; ㉡ \textbf{latency — specifically tail latency (p95/p99).}}
+\qitem{3}{Ⓐ \textbf{throughput}; Ⓑ \textbf{latency — specifically tail latency (p95/p99).}}
 
 \qitem{4}{13 B × 2 bytes/parameter = \textbf{≈ 26 GB.} Full marks if you add the implication: it does not fit an FP16 load on a 24 GB L4, so quantization is required.}
 

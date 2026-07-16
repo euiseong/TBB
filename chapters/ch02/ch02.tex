@@ -641,7 +641,7 @@ Run the handout's benchmark script: a small transformer (DistilBERT-class) or sm
 
 \qitem{2}{Your monitoring inside a guest shows high \code{\%st} (steal time) exactly during p99 latency spikes. In one sentence: what is physically happening, and name one remedy.}
 
-\qitem{3}{Fill in the blanks: handing a physical GPU to a guest is called ( ㉠ ), and it is safe only because the ( ㉡ ) translates and polices the device's DMA.}
+\qitem{3}{Fill in the blanks: handing a physical GPU to a guest is called ( Ⓐ ), and it is safe only because the ( Ⓑ ) translates and polices the device's DMA.}
 
 \qitem{4}{Firecracker boots a microVM in \textasciitilde{}125 ms, yet a serverless GPU model endpoint may cold-start in 30+ seconds. Name two places the remaining time goes.}
 
@@ -679,7 +679,7 @@ Run the handout's benchmark script: a small transformer (DistilBERT-class) or sm
 
 \qitem{2}{The host scheduler is running other tenants' threads during your vCPU's runnable time — your "CPU" pauses invisibly. Remedies: dedicated-core instance types, fewer vCPUs per host (less overcommit), or moving latency-critical serving off shared families.}
 
-\qitem{3}{㉠ \textbf{PCIe passthrough} (via VFIO); ㉡ \textbf{IOMMU} (Intel VT-d / AMD-Vi).}
+\qitem{3}{Ⓐ \textbf{PCIe passthrough} (via VFIO); Ⓑ \textbf{IOMMU} (Intel VT-d / AMD-Vi).}
 
 \qitem{4}{Any two of: scheduling/finding a GPU host; pulling a multi-GB container image; loading tens of GB of model weights to GPU memory; CUDA/runtime initialization and cache warm-up. The microVM itself stopped being the bottleneck — that is Firecracker's achievement and Week 12's starting point.}
 
